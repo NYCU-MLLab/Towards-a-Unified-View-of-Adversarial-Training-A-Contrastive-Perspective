@@ -1,0 +1,6 @@
+git+https://github.com/fra31/auto-attack
+numpy==1.21.1
+optimizer==0.0.0.0a0.dev20220127
+Pillow==9.2.0
+torch==1.9.0
+torchvision==0.10.0
