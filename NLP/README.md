@@ -38,3 +38,12 @@ To train the encoder with the proposed AT and evaluate with STS dataset, run the
 ```
 ./run_at.sh
 ```
+
+## Checkpoints
+
+Checkpoint of the proposed CL:
+https://drive.google.com/drive/folders/10CNZjD3QsI-oE428r7grFBLktmtnYTq2?usp=sharing
+
+Checkpoint of the self-supervised AT:
+https://drive.google.com/drive/folders/13Uq3KWoR-g-Y-EPTp-6Rlo3v0TFPmfli?usp=sharing
+
