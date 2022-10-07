@@ -584,28 +584,6 @@ class ContrastiveAt:
 
         return (anch_inputs + delta).detach()
     
-
-    def free_pgd(self, model, cls_inputs, anch_inputs, eps=8. / 255., alpha=2. / 255., iters=10):
-
-        delta = torch.rand_like(anch_inputs) * eps * 2 - eps
-        delta = torch.nn.Parameter(delta)
-        
-        for i in range(iters):
-
-            feat1 = model.train()(cls_inputs, 'normal')
-            feat2 = model.train()(anch_inputs + delta, 'pgd')
-
-            loss = self.__call__(feat1, feat2) / (iters + 1)
-
-            loss.backward()
-
-            delta.data = delta.data + alpha * delta.grad.sign()
-            delta.grad = None
-            delta.data = torch.clamp(delta.data, min=-eps, max=eps)
-            delta.data = torch.clamp(anch_inputs + delta.data, min=0, max=1) - anch_inputs 
-
-        return (anch_inputs + delta).detach()
-    
     def __call__(self, cls_feat, anch_feat):
         cls_feat_n = nn.functional.normalize(cls_feat)
         anch_feat_n = nn.functional.normalize(anch_feat)
